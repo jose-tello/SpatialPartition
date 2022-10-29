@@ -3,18 +3,18 @@
 
 #include "SDL/include/SDL.h"
 
-Window::Window(Application* app) : Module(app),
+M_Window::M_Window(Application* app) : Module(app),
 	window(nullptr)
 {
 }
 
 
-Window::~Window()
+M_Window::~M_Window()
 {
 }
 
 
-void Window::Start()
+void M_Window::Awake()
 {
 	SDL_InitSubSystem(SDL_INIT_VIDEO);
 
@@ -22,14 +22,14 @@ void Window::Start()
 }
 
 
-void Window::CleanUp()
+void M_Window::CleanUp()
 {
 	SDL_DestroyWindow(window);
 	window = nullptr;
 }
 
 
-SDL_Window* Window::GetWindow()
+SDL_Window* M_Window::GetWindow()
 {
 	return window;
 }

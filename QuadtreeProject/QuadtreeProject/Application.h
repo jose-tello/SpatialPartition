@@ -9,6 +9,7 @@ enum class MODULE_TYPE : int
 {
 	INPUT = 0,
 	WINDOW,
+	TEXTURES,
 	RENDER,
 	MAX
 };
@@ -16,6 +17,8 @@ enum class MODULE_TYPE : int
 struct Application
 {
 public:
+
+	void Awake();
 	void Start();
 
 	void Update();

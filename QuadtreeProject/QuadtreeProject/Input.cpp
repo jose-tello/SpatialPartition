@@ -4,25 +4,25 @@
 #include "SDL/include/SDL.h"
 
 
-Input::Input(Application* app) : Module(app)
+M_Input::M_Input(Application* app) : Module(app)
 {
 	memset(keyboard, 0, MAX_KEYS * sizeof(int));
 }
 
 
-Input::~Input()
+M_Input::~M_Input()
 {
 
 }
 
-void Input::Start()
+void M_Input::Awake()
 {
 	SDL_Init(0);
 	SDL_InitSubSystem(SDL_INIT_EVENTS);
 }
 
 
-void Input::PreUpdate()
+void M_Input::PreUpdate()
 {
 	const Uint8* keys = SDL_GetKeyboardState(NULL);
 
@@ -74,7 +74,7 @@ void Input::PreUpdate()
 }
 
 
-void Input::CleanUp()
+void M_Input::CleanUp()
 {
 	app = nullptr;
 	memset(keyboard, 0, MAX_KEYS * sizeof(int));

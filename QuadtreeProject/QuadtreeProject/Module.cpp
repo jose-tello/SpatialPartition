@@ -14,6 +14,12 @@ Module::~Module()
 }
 
 
+void Module::Awake()
+{
+
+}
+
+
 void Module::Start()
 {
 

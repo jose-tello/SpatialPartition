@@ -8,13 +8,13 @@
 
 struct SDL_Window;
 
-class Window : public Module
+class M_Window : public Module
 {
 public:
-	Window(Application* app);
-	~Window() override;
+	M_Window(Application* app);
+	~M_Window() override;
 
-	void Start() override;
+	void Awake() override;
 
 	void CleanUp() override;
 

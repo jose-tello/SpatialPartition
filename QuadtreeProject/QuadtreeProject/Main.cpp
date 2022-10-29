@@ -14,6 +14,7 @@ int main(int argc, char* argv[])
 	
 	Application app;
 
+	app.Awake();
 	app.Start();
 
 	while (app.quit == false)

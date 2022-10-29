@@ -13,13 +13,13 @@ enum class KEY_STATE : int
 	KEY_UP
 };
 
-class Input : public Module
+class M_Input : public Module
 {
 public:
-	Input(Application* app);
-	~Input() override;
+	M_Input(Application* app);
+	~M_Input() override;
 
-	void Start() override;
+	void Awake() override;
 
 	void PreUpdate() override;
 

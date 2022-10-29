@@ -4,13 +4,15 @@
 #include "Module.h"
 
 struct SDL_Renderer;
+struct SDL_Texture;
 
-class Render : public Module
+class M_Render : public Module
 {
 public:
-	Render(Application* app);
-	~Render() override;
+	M_Render(Application* app);
+	~M_Render() override;
 
+	void Awake() override;
 	void Start() override;
 
 	void PreUpdate() override;
@@ -18,9 +20,12 @@ public:
 
 	void CleanUp() override;
 
+	SDL_Renderer* GetRenderer() const;
+
 private:
 
 	SDL_Renderer* render = nullptr;
+	SDL_Texture* background = nullptr;
 };
 
 #endif // !__M_RENDER_H__

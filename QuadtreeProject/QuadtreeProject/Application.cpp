@@ -3,15 +3,29 @@
 
 #include "Input.h"
 #include "Window.h"
+#include "Texture.h"
 #include "Render.h"
+
+
+void Application::Awake()
+{
+	//push all modules
+	modules.push_back(new M_Input(this));
+	modules.push_back(new M_Window(this));
+	modules.push_back(new M_Textures(this));
+	modules.push_back(new M_Render(this));
+
+	int moduleCount = modules.size();
+
+	for (int i = 0; i < moduleCount; ++i)
+	{
+		modules[i]->Awake();
+	}
+}
+
 
 void Application::Start()
 {
-	//push all modules
-	modules.push_back(new Input(this));
-	modules.push_back(new Window(this));
-	modules.push_back(new Render(this));
-
 	int moduleCount = modules.size();
 
 	for (int i = 0; i < moduleCount; ++i)

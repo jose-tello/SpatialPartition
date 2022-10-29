@@ -2,49 +2,65 @@
 #include "Application.h"
 
 #include "Window.h"
+#include "Texture.h"
 
 #include "SDL/include/SDL.h"
 
 
-Render::Render(Application* app) : Module(app),
-	render(nullptr)
+M_Render::M_Render(Application* app) : Module(app),
+	render(nullptr),
+	background(nullptr)
 {
 }
 
 
-Render::~Render()
+M_Render::~M_Render()
 {
 
 }
 
 
-void Render::Start()
+void M_Render::Awake()
 {
-	Window* mWindow = static_cast<Window*>(app->GetModule(MODULE_TYPE::WINDOW));
+	M_Window* mWindow = static_cast<M_Window*>(app->GetModule(MODULE_TYPE::WINDOW));
 	
 	render = SDL_CreateRenderer(mWindow->GetWindow(), -1, 0);
 }
 
 
-void Render::PreUpdate()
+void M_Render::Start()
+{
+	M_Textures* textures = static_cast<M_Textures*>(app->GetModule(MODULE_TYPE::TEXTURES));
+	background = textures->LoadTexture("Images/Background2.jpg");
+}
+
+
+
+void M_Render::PreUpdate()
 {
 	SDL_RenderClear(render);
 }
 
 
-void Render::PostUpdate()
+void M_Render::PostUpdate()
 {
 	SDL_SetRenderDrawColor(render, 250, 0, 0, 250);
 
 	SDL_Rect outputRect = { 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT };
-	SDL_RenderDrawRect(render, &outputRect);
+	SDL_RenderCopy(render, background, &outputRect, &outputRect);
 
 	SDL_RenderPresent(render);
 }
 
 
-void Render::CleanUp()
+void M_Render::CleanUp()
 {
 	SDL_DestroyRenderer(render);
 	render = nullptr;
+}
+
+
+SDL_Renderer* M_Render::GetRenderer() const
+{
+	return render;
 }
